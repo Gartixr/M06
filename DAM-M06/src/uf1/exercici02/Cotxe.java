@@ -58,6 +58,18 @@ public class Cotxe implements Serializable{
 		return "Cotxe [marca=" + marca + ", model=" + model + ", any=" + any + ", matricula=" + matricula + "]";
 	}
 	
-	
-	
+	public boolean checkExistencia(String filtro) {
+
+		if(marca.equalsIgnoreCase(filtro)) {
+			return true;
+		}else if(model.equalsIgnoreCase(filtro)) {
+			return true;
+		}else if(Integer.toString(any).equalsIgnoreCase(filtro)) {
+			return true;
+		}else if(matricula.equalsIgnoreCase(filtro)) {
+			return true;
+		}else {
+			return false;
+		}	
+	}
 }
