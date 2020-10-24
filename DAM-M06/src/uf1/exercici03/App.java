@@ -94,4 +94,16 @@ public class App {
 		aleatoriFile.close();
 		
 	}
+	
+	public void guardarDades() {
+		
+	}
+	
+	public void llegirDades() {
+		
+	}
+	
+	public void consultar(int index) {
+		
+	}
 }
