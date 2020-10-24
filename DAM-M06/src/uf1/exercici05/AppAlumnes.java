@@ -25,6 +25,7 @@ import org.xml.sax.SAXException;
 public class AppAlumnes {
 
 	static Scanner teclado = new Scanner(System.in);
+	static boolean guardado = true;
 	
 	public static void main(String[] args) throws SAXException, IOException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
 		// TODO Auto-generated method stub
@@ -38,7 +39,9 @@ public class AppAlumnes {
 			
 		System.out.println("[1] - Crear Alumne\n"
 				+ "[2] - Modificar Alumne\n"
-				+ "[3] - Eliminar Alumne");
+				+ "[3] - Eliminar Alumne\n"
+				+ "[4] - Guardar xml\n"
+				+ "[5] - Salir");
 		
 		int input = teclado.nextInt();
 		
@@ -46,18 +49,29 @@ public class AppAlumnes {
 		// Crear
 		case 1:
 			crearAlumne(nodeArrel, doc);
+			guardado = false;
 			break;
 		// Eliminar
 		case 2:
 			modificarAlumne();
+			guardado = false;
 			break;
 		// Modificar
 		case 3:
 			eliminarAlumne();
+			guardado = false;
 			break;
-
+		
+		// Guardar xml
+		case 4:
+			saveXML(doc);
+			guardado = true;
+			
 		// Sortir
 		default:
+			if(!guardado) {
+				System.out.println("Tienes cambios sin guardar. Deseas salir?");
+			}
 			break;
 		}
 		
@@ -114,7 +128,6 @@ public class AppAlumnes {
 		
 		nodeArrel.appendChild(nodeToAdd);
 		
-		saveXML(doc);
 	}
 
 	private static int getUltimoId(Node nodeArrel) {
