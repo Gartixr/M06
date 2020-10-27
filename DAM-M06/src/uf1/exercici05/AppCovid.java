@@ -31,14 +31,14 @@ public class AppCovid {
 	public static void main(String[] args) throws SAXException, IOException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
 		// TODO Auto-generated method stub
 
-		File file = new File("C:\\Users\\adidu\\git\\UF6\\DAM-M06\\src\\uf1\\exercici05\\alumnes.xml");
+		File file = new File("C:\\Users\\adidu\\git\\UF6\\DAM-M06\\src\\uf1\\exercici05\\covid.xml");
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.parse(file);
 
 		Node nodeArrel = doc.getDocumentElement();
 
-		NodeList child = nodeArrel.getChildNodes();
+		NodeList child = nodeArrel.getChildNodes().item(0).getChildNodes();
 		NamedNodeMap atributs;
 		for (int i = 0; i < child.getLength(); i++) {
 			if (child.item(i).getNodeName().equals("row") && child.item(i).hasAttributes()) {
@@ -203,6 +203,7 @@ public class AppCovid {
 		
 		Element nouNode;
 		Element selected = doc.getElementById(id);
+		System.out.println(selected);
 		
 		System.out.println("Nom node:");
 		String nomNode = teclado.next();
@@ -226,33 +227,38 @@ public class AppCovid {
 		int ultimoId = getUltimoId(nodeArrel);
 
 		int id = ultimoId + 1;
-		System.out.println("Nom:");
-		String nom = teclado.next();
-		System.out.println("Cognom:");
-		String cognom1 = teclado.next();
-		System.out.println("Cognom2:");
-		String cognom2 = teclado.next();
-		System.out.println("Nota final:");
-		String notaFinal = teclado.next();
+		System.out.println("Data:");
+		String data = teclado.next();
+		System.out.println("Nous casos diaris confirmats:");
+		String casosConfirmats = teclado.next();
+		System.out.println("Defuncions:");
+		String defuncions = teclado.next();
+		System.out.println("Total casos confirmats:");
+		String totalCasos = teclado.next();
+		System.out.println("Total defuncions:");
+		String totalDefuncions = teclado.next();
 
-		nodeToAdd = doc.createElement("alumne");
-		nodeToAdd.setAttribute("id", String.valueOf(id));
-		nodeToAdd.setIdAttribute("id", true);
+		nodeToAdd = doc.createElement("row");
+		nodeToAdd.setAttribute("_id", String.valueOf(id));
+		nodeToAdd.setIdAttribute("_id", true);
 
-		Element elemNom = doc.createElement("nom");
-		Element elemCognom1 = doc.createElement("cognom1");
-		Element elemCognom2 = doc.createElement("cognom2");
-		Element elemNotaFinal = doc.createElement("notaFinal");
+		Element elemData = doc.createElement("data");
+		Element elemConfirmats = doc.createElement("nous_casos_diaris_confirmats");
+		Element elemDefuncions = doc.createElement("defuncions_di_ries");
+		Element elemTotalConfirmats = doc.createElement("total_de_casos_confirmats");
+		Element elemTotalDefuncions = doc.createElement("total_de_defuncions");
 
-		elemNom.appendChild(doc.createTextNode(nom));
-		elemCognom1.appendChild(doc.createTextNode(cognom1));
-		elemCognom2.appendChild(doc.createTextNode(cognom2));
-		elemNotaFinal.appendChild(doc.createTextNode(notaFinal));	
+		elemData.appendChild(doc.createTextNode(data));
+		elemConfirmats.appendChild(doc.createTextNode(casosConfirmats));
+		elemDefuncions.appendChild(doc.createTextNode(defuncions));
+		elemTotalConfirmats.appendChild(doc.createTextNode(totalCasos));
+		elemTotalDefuncions.appendChild(doc.createTextNode(totalDefuncions));
 
-		nodeToAdd.appendChild(elemNom);
-		nodeToAdd.appendChild(elemCognom1);
-		nodeToAdd.appendChild(elemCognom2);
-		nodeToAdd.appendChild(elemNotaFinal);
+		nodeToAdd.appendChild(elemData);
+		nodeToAdd.appendChild(elemConfirmats);
+		nodeToAdd.appendChild(elemDefuncions);
+		nodeToAdd.appendChild(elemTotalConfirmats);
+		nodeToAdd.appendChild(elemTotalDefuncions);
 
 		nodeArrel.appendChild(nodeToAdd);
 
@@ -277,7 +283,7 @@ public class AppCovid {
 	private static void saveXML(Document doc) throws TransformerFactoryConfigurationError, FileNotFoundException, TransformerException {
 		// TODO Auto-generated method stub
 		Transformer tr = TransformerFactory.newInstance().newTransformer();
-		tr.transform(new DOMSource(doc), new StreamResult(new FileOutputStream("C:\\Users\\adidu\\git\\UF6\\DAM-M06\\src\\uf1\\exercici05\\alumnes.xml")));
+		tr.transform(new DOMSource(doc), new StreamResult(new FileOutputStream("C:\\Users\\adidu\\git\\UF6\\DAM-M06\\src\\uf1\\exercici05\\covid.xml")));
 	}
 
 }
