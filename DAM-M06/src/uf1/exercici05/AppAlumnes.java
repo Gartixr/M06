@@ -46,65 +46,173 @@ public class AppAlumnes {
 				for (int j = 0; j < atributs.getLength(); j++) {
 					if (atributs.item(j).getNodeName().equals("id")) {
 						String numId = atributs.item(j).getNodeValue();
-						System.out.println(numId);
 						((Element) child.item(i)).setIdAttribute("id", true);
 					}
 				}
 			}
 		}
 
-		System.out.println("[1] - Crear Alumne\n"
-				+ "[2] - Modificar Alumne\n"
-				+ "[3] - Eliminar Alumne\n"
-				+ "[4] - Guardar xml\n"
-				+ "[5] - Salir");
+		boolean menu = true;
+		while (menu) {
+			System.out.println("[1] - Crear Alumne\n"
+					+ "[2] - Modificar Alumne\n"
+					+ "[3] - Eliminar Alumne\n"
+					+ "[4] - Veure Info\n"
+					+ "[5] - Guardar XML\n"
+					+ "[6] - Salir");
+			int input = teclado.nextInt();
 
-		int input = teclado.nextInt();
+			switch (input) {
+			// Crear
+			case 1:
+				crearAlumne(nodeArrel, doc);
+				guardado = false;
+				break;
+				// Eliminar
+			case 2:
+				modificarAlumne(doc);
+				guardado = false;
+				break;
+				// Modificar
+			case 3:
+				eliminarAlumne(doc, nodeArrel);
+				guardado = false;
+				break;
 
-		switch (input) {
-		// Crear
-		case 1:
-			crearAlumne(nodeArrel, doc);
-			guardado = false;
-			break;
-			// Eliminar
-		case 2:
-			modificarAlumne();
-			guardado = false;
-			break;
-			// Modificar
-		case 3:
-			eliminarAlumne(doc);
-			guardado = false;
-			break;
-
-			// Guardar xml
-		case 4:
-			saveXML(doc);
-			guardado = true;
-
-			// Sortir
-		default:
-			if(!guardado) {
-				System.out.println("Tienes cambios sin guardar. Deseas salir?");
+				// Guardar xml
+			case 5:
+				saveXML(doc);
+				guardado = true;
+				break;
+				// Sortir
+			case 6:
+				if(!guardado) {
+					System.out.println("Tienes cambios sin guardar. Deseas salir?\n[1] - Si\n[2] - No");
+					int salir = teclado.nextInt();
+					
+					if(salir == 2) {
+						menu = true;
+						break;
+					}else {
+						menu = false;
+						break;
+					}
+				}else {
+					menu = false;
+					break;
+				}
+			case 4:
+				veureInfo(nodeArrel);
+				break;
 			}
-			break;
 		}
-
 	}
 
-	private static void eliminarAlumne(Document doc) {
+	private static void veureInfo(Node nodeArrel) {		
+		NodeList nodeList = nodeArrel.getChildNodes();
+		
+		for (int i = 0; i < nodeList.getLength(); i++) {
+			
+			if(nodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {
+				if(nodeList.item(i).hasAttributes()) {
+					System.out.println("Alumne: " + nodeList.item(i).getAttributes().item(0));
+				}else {
+					System.out.println("\t" + nodeList.item(i).getNodeName() + ": " + nodeList.item(i).getTextContent());
+				}
+				if(nodeList.item(i).hasChildNodes()) {
+					veureInfo(nodeList.item(i));
+				}
+			}
+		}
+	}
+
+	private static void eliminarAlumne(Document doc, Node nodeArrel) {
 		// TODO Auto-generated method stub
 		System.out.println("ID:");
 		String id = teclado.next();
 		Element element = doc.getElementById(id);
-		System.out.println(element.getNodeName());
-		doc.removeChild(element);
+		nodeArrel.removeChild(element);
 	}
 
-	private static void modificarAlumne() {
+	private static void modificarAlumne(Document doc) {
 		// TODO Auto-generated method stub
 
+		// Pedir id alumno
+		System.out.println("ID:");
+		String id = teclado.next();
+		Element element = doc.getElementById(id);
+		
+		
+		System.out.println("[1] - Afegir node\n"
+				+ "[2] - Modificar node\n"
+				+ "[3] - Eliminar node\n"
+				+ "[4] - Sortir");
+		
+		int input = teclado.nextInt();
+		
+		switch (input) {
+		case 1:
+			afegirNode(id, doc);
+			break;
+		case 2:
+			modificarNode(id, doc);
+			break;
+		case 3:
+			eliminarNode(id, doc);
+			break;
+
+		default:
+			break;
+		}
+		
+	}
+
+	private static void eliminarNode(String id, Document doc) {
+		// TODO Auto-generated method stub
+		System.out.println("Nom node a eliminar");
+		String nodeElim = teclado.next();
+		
+		NodeList selected = doc.getElementById(id).getChildNodes();
+		
+		for (int i = 0; i < selected.getLength(); i++) {
+			if(selected.item(i).getNodeName().equalsIgnoreCase(nodeElim)) {
+				((Node) selected).removeChild(selected.item(i));
+			}
+		}
+	}
+
+	private static void modificarNode(String id, Document doc) {
+		// TODO Auto-generated method stub
+		System.out.println("Nom node a modificar:");
+		String nodeMod = teclado.next();
+		
+		System.out.println("Nou valor:");
+		String valor = teclado.next();
+		
+		NodeList selected = doc.getElementById(id).getChildNodes();
+		
+		for (int i = 0; i < selected.getLength(); i++) {
+			if(selected.item(i).getNodeName().equalsIgnoreCase(nodeMod)) {
+				selected.item(i).setTextContent(valor);;
+			}
+		}
+	}
+
+	private static void afegirNode(String id, Document doc) {
+		// TODO Auto-generated method stub
+		
+		Element nouNode;
+		Element selected = doc.getElementById(id);
+		
+		System.out.println("Nom node:");
+		String nomNode = teclado.next();
+		System.out.println("Valor:");
+		String valorNode = teclado.next();
+		
+		nouNode = doc.createElement(nomNode);
+		nouNode.appendChild(doc.createTextNode(valorNode));
+		selected.appendChild(nouNode);
+		
 	}
 
 	private static void crearAlumne(Node nodeArrel, Document doc) throws FileNotFoundException, TransformerFactoryConfigurationError, TransformerException {
