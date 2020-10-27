@@ -115,7 +115,7 @@ public class AppCovid {
 			
 			if(nodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {
 				if(nodeList.item(i).hasAttributes()) {
-					System.out.println("Row: " + nodeList.item(i).getAttributes().item(0));
+					System.out.println("Row: " + nodeList.item(i).getAttributes().item(1));
 				}else {
 					System.out.println("\t" + nodeList.item(i).getNodeName() + ": " + nodeList.item(i).getTextContent());
 				}
@@ -266,13 +266,13 @@ public class AppCovid {
 
 	private static int getUltimoId(Node nodeArrel) {
 
-		NodeList hijos = nodeArrel.getChildNodes();
+		NodeList hijos = nodeArrel.getChildNodes().item(0).getChildNodes();
 		String id = "0";
 
 		for (int i = 0; i < hijos.getLength(); i++) {
 
 			if(hijos.item(i).getNodeType() == Node.ELEMENT_NODE) {
-				id = hijos.item(i).getAttributes().item(0).getNodeValue();
+				id = hijos.item(i).getAttributes().item(1).getNodeValue();
 			}
 
 		}
