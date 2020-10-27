@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<covids>
+    <covids _address="Addres0" _id="0" _position="0" _uuid="uuid0">
+        <casosDiaris>0</casosDiaris>
+        <data>data0</data>
+        <defuncionsDiaris>0</defuncionsDiaris>
+        <totalCasosDiaris>0</totalCasosDiaris>
+        <totalDefuncionsDiaris>0</totalDefuncionsDiaris>
+    </covids>
+    <covids _address="Addres1" _id="1" _position="1" _uuid="uuid1">
+        <casosDiaris>1</casosDiaris>
+        <data>data1</data>
+        <defuncionsDiaris>0</defuncionsDiaris>
+        <totalCasosDiaris>1</totalCasosDiaris>
+        <totalDefuncionsDiaris>1</totalDefuncionsDiaris>
+    </covids>
+    <covids _address="Addres2" _id="2" _position="2" _uuid="uuid2">
+        <casosDiaris>2</casosDiaris>
+        <data>data2</data>
+        <defuncionsDiaris>0</defuncionsDiaris>
+        <totalCasosDiaris>2</totalCasosDiaris>
+        <totalDefuncionsDiaris>2</totalDefuncionsDiaris>
+    </covids>
+    <covids _address="Address3" _id="3" _position="3" _uuid="uuid3">
+        <casosDiaris>3</casosDiaris>
+        <data>data3</data>
+        <defuncionsDiaris>0</defuncionsDiaris>
+        <totalCasosDiaris>3</totalCasosDiaris>
+        <totalDefuncionsDiaris>3</totalDefuncionsDiaris>
+    </covids>
+</covids>
