@@ -31,7 +31,7 @@ public class AppAlumnes {
 	public static void main(String[] args) throws SAXException, IOException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
 		// TODO Auto-generated method stub
 
-		File file = new File("C:\\Users\\adidu\\git\\UF6\\DAM-M06\\src\\uf1\\exercici05\\alumnes.xml");
+		File file = new File("./src/uf1/exercici05/alumnes.xml");
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.parse(file);
@@ -277,7 +277,7 @@ public class AppAlumnes {
 	private static void saveXML(Document doc) throws TransformerFactoryConfigurationError, FileNotFoundException, TransformerException {
 		// TODO Auto-generated method stub
 		Transformer tr = TransformerFactory.newInstance().newTransformer();
-		tr.transform(new DOMSource(doc), new StreamResult(new FileOutputStream("C:\\Users\\adidu\\git\\UF6\\DAM-M06\\src\\uf1\\exercici05\\alumnes.xml")));
+		tr.transform(new DOMSource(doc), new StreamResult(new FileOutputStream("./src/uf1/exercici05/alumnes.xml")));
 	}
 
 }
