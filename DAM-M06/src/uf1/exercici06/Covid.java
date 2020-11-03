@@ -82,7 +82,4 @@ public class Covid {
 	public void setTotalDefuncionsDiaris(int totalDefuncionsDiaris) {
 		this.totalDefuncionsDiaris = totalDefuncionsDiaris;
 	}
-	
-	
-	
 }
