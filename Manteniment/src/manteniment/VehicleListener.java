@@ -11,7 +11,7 @@ public class VehicleListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent e) {
         com.objectdb.Enhancer.enhance("vehicle.*");
         EntityManagerFactory emf =
-            Persistence.createEntityManagerFactory("$objectdb/db/vehicle.odb");
+            Persistence.createEntityManagerFactory("$objectdb/db/manteniment.odb");
         e.getServletContext().setAttribute("emf", emf);
     }
  
