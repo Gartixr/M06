@@ -14,7 +14,7 @@
         <form method="POST" action="VehicleServlet">
             Data Importacio(dd/mm/yyyy): <input type="text" name="dataImportacio" />
             Nom Model: <input type="text" name="nomModel" />
-			Preu(sense €): <input type="text" name="preu" />
+			Preu(numero): <input type="text" name="preu" />
             Arreglat(true/false): <input type="text" name="arreglat" />
 			<input type="submit" value="Add" />
 		</form>
