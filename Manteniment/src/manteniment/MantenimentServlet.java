@@ -41,7 +41,7 @@ public class MantenimentServlet extends HttpServlet {
 			}
 
 				List<Vehicle> vehicleList = em.createQuery("SELECT g FROM Vehicle g", Vehicle.class).getResultList();
-				List<Propietari> propietariList = em.createQuery("SELECT g FROM Vehicle g", Propietari.class).getResultList();
+				List<Propietari> propietariList = em.createQuery("SELECT g FROM Propietari g", Propietari.class).getResultList();
 				request.setAttribute("vehicles", vehicleList);
 				request.setAttribute("propietaris", propietariList);
 				request.getRequestDispatcher("/manteniment.jsp")
