@@ -33,9 +33,9 @@ public class PropietariServlet extends HttpServlet {
 				em.getTransaction().commit();
 			}
 
-			List<Propietari> guestList = em.createQuery(
+			List<Propietari> propietariList = em.createQuery(
 					"SELECT g FROM Propietari g", Propietari.class).getResultList();
-			request.setAttribute("propietari", guestList);
+			request.setAttribute("propietaris", propietariList);
 			request.getRequestDispatcher("/manteniment.jsp")
 			.forward(request, response);
 
