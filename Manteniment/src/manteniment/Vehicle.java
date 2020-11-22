@@ -1,6 +1,8 @@
 package manteniment;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.GeneratedValue;
@@ -22,11 +24,12 @@ public class Vehicle implements Serializable{
 		
 	}
 	
-	public Vehicle(Date dataImportacio, String nomModel, double preu, boolean arreglat){
-		this.dataImportacio = dataImportacio;
+	public Vehicle(String dataImportacio, String nomModel, String preu, String arreglat) throws ParseException{
+
+		this.dataImportacio = new SimpleDateFormat("dd/MM/yyyy").parse(dataImportacio);
 		this.nomModel = nomModel;
-		this.preu = preu;
-		this.arreglat = arreglat;
+		this.preu = Double.parseDouble(preu);
+		this.arreglat = Boolean.parseBoolean(arreglat);
 	}
 
 	public long getId() {
