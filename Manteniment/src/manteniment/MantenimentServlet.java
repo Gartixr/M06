@@ -40,9 +40,10 @@ public class MantenimentServlet extends HttpServlet {
 				em.getTransaction().commit();
 			}
 
-				List<Vehicle> vehicleList = em.createQuery(
-						"SELECT g FROM Vehicle g", Vehicle.class).getResultList();
+				List<Vehicle> vehicleList = em.createQuery("SELECT g FROM Vehicle g", Vehicle.class).getResultList();
+				List<Propietari> propietariList = em.createQuery("SELECT g FROM Vehicle g", Propietari.class).getResultList();
 				request.setAttribute("vehicles", vehicleList);
+				request.setAttribute("propietaris", propietariList);
 				request.getRequestDispatcher("/manteniment.jsp")
 				.forward(request, response); 
         } catch (ParseException e) {
