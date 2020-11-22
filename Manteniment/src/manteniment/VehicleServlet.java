@@ -33,9 +33,9 @@ public class VehicleServlet extends HttpServlet {
 				em.getTransaction().commit();
 			}
 
-				List<Vehicle> guestList = em.createQuery(
+				List<Vehicle> vehicleList = em.createQuery(
 						"SELECT g FROM Vehicle g", Vehicle.class).getResultList();
-				request.setAttribute("guests", guestList);
+				request.setAttribute("vehicles", vehicleList);
 				request.getRequestDispatcher("/manteniment.jsp")
 				.forward(request, response);
 
