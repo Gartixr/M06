@@ -17,11 +17,11 @@ public class PropietariServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		EntityManagerFactory emf = (EntityManagerFactory)getServletContext().getAttribute("emf");
 		EntityManager em = emf.createEntityManager();
 
 		try {
-			
 			String dataPeticio = request.getParameter("dataPeticio");
 			String nomPropietari = request.getParameter("nomPropietari");
 			String taller = request.getParameter("taller");

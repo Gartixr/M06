@@ -27,6 +27,7 @@ public class VehicleServlet extends HttpServlet {
 			String nomModel = request.getParameter("nomModel");
 			String preu = request.getParameter("preu");
 			String arreglat = request.getParameter("arreglat");
+			
 			if (dataImportacio != null && nomModel != null && preu != null && arreglat != null) {
 				em.getTransaction().begin();
 				em.persist(new Vehicle(dataImportacio, nomModel, preu, arreglat));
