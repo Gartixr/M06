@@ -1,40 +1,57 @@
 package manteniment;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class PropietariServlet
- */
 @WebServlet("/PropietariServlet")
 public class PropietariServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PropietariServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		EntityManagerFactory emf = (EntityManagerFactory)getServletContext().getAttribute("emf");
+		EntityManager em = emf.createEntityManager();
+
+		try {
+			
+			String dataPeticio = request.getParameter("dataPeticio");
+			String nomPropietari = request.getParameter("nomPropietari");
+			String taller = request.getParameter("taller");
+			String premium = request.getParameter("premium");
+			
+			if (dataPeticio != null && nomPropietari != null && taller != null && premium != null) {
+				em.getTransaction().begin();
+				em.persist(new Propietari(dataPeticio, nomPropietari, taller, premium));
+				em.getTransaction().commit();
+			}
+
+			List<Propietari> guestList = em.createQuery(
+					"SELECT g FROM Propietari g", Propietari.class).getResultList();
+			request.setAttribute("propietari", guestList);
+			request.getRequestDispatcher("/propietari.jsp")
+			.forward(request, response);
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			// Close the database connection:
+			if (em.getTransaction().isActive())
+				em.getTransaction().rollback();
+			em.close();
+		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
