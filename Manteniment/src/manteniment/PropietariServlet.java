@@ -36,7 +36,7 @@ public class PropietariServlet extends HttpServlet {
 			List<Propietari> guestList = em.createQuery(
 					"SELECT g FROM Propietari g", Propietari.class).getResultList();
 			request.setAttribute("propietari", guestList);
-			request.getRequestDispatcher("/propietari.jsp")
+			request.getRequestDispatcher("/manteniment.jsp")
 			.forward(request, response);
 
 		} catch (ParseException e) {

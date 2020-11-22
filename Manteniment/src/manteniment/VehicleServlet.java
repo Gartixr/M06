@@ -36,7 +36,7 @@ public class VehicleServlet extends HttpServlet {
 				List<Vehicle> guestList = em.createQuery(
 						"SELECT g FROM Vehicle g", Vehicle.class).getResultList();
 				request.setAttribute("guests", guestList);
-				request.getRequestDispatcher("/vehicle.jsp")
+				request.getRequestDispatcher("/manteniment.jsp")
 				.forward(request, response);
 
 		} catch (ParseException e) {
