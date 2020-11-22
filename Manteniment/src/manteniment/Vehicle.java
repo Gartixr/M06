@@ -1,4 +1,4 @@
-package uf2.exercici08.manteniment;
+package manteniment;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -56,3 +56,4 @@ public class Vehicle implements Serializable{
 	}
 	
 }
+
