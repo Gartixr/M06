@@ -3,9 +3,11 @@ package uf2.exercici08.manteniment;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@Entity
 public class Vehicle implements Serializable{
 
 	private static final long serialVersionUID = 1;
