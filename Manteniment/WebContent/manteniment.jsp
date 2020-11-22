@@ -12,18 +12,18 @@
 
     <body>
         <form method="POST" action="VehicleServlet">
-            Data Importacio: <input type="text" name="dataImportacio" />
+            Data Importacio(dd/mm/yyyy): <input type="text" name="dataImportacio" />
             Nom Model: <input type="text" name="nomModel" />
-			Preu: <input type="text" name="preu" />
-            Arreglat: <input type="text" name="arreglat" />
+			Preu(sense €): <input type="text" name="preu" />
+            Arreglat(true/false): <input type="text" name="arreglat" />
 			<input type="submit" value="Add" />
 		</form>
 		
 		<form action="PropietariServlet">
-            Data Peticio: <input type="text" name="dataPeticio" />
+            Data Peticio(dd/mm/yyyy): <input type="text" name="dataPeticio" />
             Nom Propietari: <input type="text" name="nomPropietari" />
-			Taller: <input type="text" name="taller" />
-            Premium: <input type="text" name="premium" />
+			Taller(numero): <input type="text" name="taller" />
+            Premium(true/false): <input type="text" name="premium" />
             <input type="submit" value="Add" />
         </form>
         
