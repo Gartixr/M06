@@ -2,7 +2,6 @@ package manteniment;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
