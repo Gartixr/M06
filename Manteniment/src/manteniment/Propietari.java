@@ -1,6 +1,8 @@
 package manteniment;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.GeneratedValue;
@@ -22,11 +24,11 @@ public class Propietari implements Serializable{
 
 	}
 
-	public Propietari(Date dataPeticio, String nomPropietari, int taller, boolean premium){
-		this.dataPeticio = dataPeticio;
+	public Propietari(String dataPeticio, String nomPropietari, String taller, String premium) throws ParseException{
+		this.dataPeticio = new SimpleDateFormat("dd/MM/yyyy").parse(dataPeticio);
 		this.nomPropietari = nomPropietari;
-		this.taller = taller;
-		this.premium = premium;
+		this.taller = Integer.parseInt(taller);
+		this.premium = Boolean.parseBoolean(premium);
 	}
 
 	public long getId() {
