@@ -26,6 +26,22 @@
                 <li> <%= vehicle %> </li> <%
             } %>
         </ol><hr>
+        
+        <form method="POST" action="PropietariServlet">
+            Data Peticio: <input type="text" name="name" />
+            Nom Propietari: <input type="text" name="name" />
+			Taller: <input type="text" name="name" />
+            Premium: <input type="text" name="name" />
+            <input type="submit" value="Add" />
+        </form>
+
+        <hr><ol> <%
+            @SuppressWarnings("unchecked") 
+            List<Propietari> propietaris = (List<Propietari>)request.getAttribute("propietaris");
+            for (Propietari propietari : propietaris) { %>
+                <li> <%= propietari %> </li> <%
+            } %>
+        </ol><hr>
  
         <iframe src="http://www.objectdb.com/pw.html?web-eclipse"
             frameborder="0" scrolling="no" width="100%" height="30"> </iframe>
