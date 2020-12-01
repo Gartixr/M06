@@ -91,9 +91,16 @@ public class App {
 
 	}
 
-	private static void delete(int selected) {
+	private static void delete(int selected) throws SQLException {
 		// TODO Auto-generated method stub
 
+		System.out.println("Estas seguro que deseas eliminar el alumno con id = " + selected + "? (Y/N)");
+		
+		if(teclado.next().equalsIgnoreCase("y")) {
+			selectStmt.execute("DELETE FROM alumnes WHERE ID = " + selected);
+			System.out.println("Alumne eliminado correctamente");
+		}
+		
 	}
 
 	private static void insert(int selected) throws SQLException {
