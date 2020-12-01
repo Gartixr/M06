@@ -13,8 +13,8 @@ public class App {
 
 		Connection con = null; 
 		Driver driver = null;
-		String url = "jdbc:mysql://10:32.24.210:3306";
-		String usuari = "remoto"; 
+		String url = "jdbc:mysql://10.32.24.210:3306";
+		String usuari = "remote"; 
 		String password = ">9d&pfLYdx.(";
 
 		System.out.println("provaDeConnexio()"); 
