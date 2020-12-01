@@ -12,11 +12,11 @@ public class App {
 
 	static Connection con = null;
 	static Statement selectStmt;
+	static Scanner teclado =  new Scanner(System.in);
 
 	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
 
-		Scanner teclado =  new Scanner(System.in);
 		Driver driver = null;
 		String url = "jdbc:mysql://10.32.24.210:3306/alumnes";
 		String usuari = "remote"; 
@@ -96,9 +96,28 @@ public class App {
 
 	}
 
-	private static void insert(int selected) {
+	private static void insert(int selected) throws SQLException {
 		// TODO Auto-generated method stub
 
+		System.out.print("Nom: ");
+		String nom = teclado.next();
+		System.out.print("Dni: ");
+		String dni = teclado.next();
+		System.out.print("Data naixement (yyyy/mm/dd): ");
+		String dataNaixement = teclado.next();
+		System.out.print("Adreça postal: ");
+		String adrecaPostal = teclado.next();
+		System.out.print("Sexe: ");
+		String sexe = teclado.next();
+		System.out.print("Codi postal: ");
+		String codiPostal = teclado.next();
+		System.out.print("Població: ");
+		String poblacio = teclado.next();
+		
+		selectStmt.execute("INSERT INTO alumnes (nom, dni, dataNaixement, adrecaPostal, sexe, codiPostal, poblacio) "
+				+ "VALUES ('" + nom + "', '" + dni + "', '" + dataNaixement + "', '" 
+				+ adrecaPostal + "', '" + sexe + "', '" + codiPostal + "', '" + poblacio + "');");
+		
 	}
 
 	private static void update(int selected) {
@@ -111,7 +130,7 @@ public class App {
 		ResultSet rs = selectStmt.executeQuery("SELECT * FROM alumnes WHERE id = " + selected);
 		
 		while (rs.next()) {
-			System.out.println("------DADES ALUMNES ID = " + selected + "------");
+			System.out.println("------------------------");
 			System.out.println("ID: " + rs.getString(1));
 			System.out.println("\tNom: " + rs.getString(2));
 			System.out.println("\tDNI: " + rs.getString(3));
@@ -126,7 +145,7 @@ public class App {
 
 	private static void selectAll() throws SQLException {
 
-		ResultSet rs = selectStmt.executeQuery("SELECT nom FROM alumnes");
+		ResultSet rs = selectStmt.executeQuery("SELECT * FROM alumnes");
 
 		while (rs.next()) {
 			System.out.println("------------------------");
