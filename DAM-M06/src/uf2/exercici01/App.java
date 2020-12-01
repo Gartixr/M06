@@ -15,7 +15,7 @@ public class App {
 		Driver driver = null;
 		String url = "jdbc:mysql://10:32.24.210:3306";
 		String usuari = "root"; 
-		String password = "";
+		String password = ">9d&pfLYdx.(";
 
 		System.out.println("provaDeConnexio()"); 
 		try {
