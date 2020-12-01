@@ -127,9 +127,59 @@ public class App {
 		
 	}
 
-	private static void update(int selected) {
+	private static void update(int selected) throws SQLException {
 		// TODO Auto-generated method stub
 
+		ResultSet rs = selectStmt.executeQuery("SELECT * FROM alumnes WHERE id = " + selected);
+
+		while (rs.next()) {
+			System.out.print("Nom: ");
+			String nom = teclado.next();
+			if(nom.length() <= 0) {
+				nom = rs.getString(2);
+			}
+			System.out.print("Dni: ");
+			String dni = teclado.next();
+			if(dni.length() <= 0) {
+				dni = rs.getString(3);
+			}
+			System.out.print("Data naixement (yyyy/mm/dd): ");
+			String dataNaixement = teclado.next();
+			if(dataNaixement.length() <= 0) {
+				dataNaixement = rs.getString(4);
+			}
+			System.out.print("Adreça postal: ");
+			String adrecaPostal = teclado.next();
+			if(adrecaPostal.length() <= 0) {
+				adrecaPostal = rs.getString(5);
+			}
+			System.out.print("Sexe: ");
+			String sexe = teclado.next();
+			if(sexe.length() <= 0) {
+				sexe = rs.getString(6);
+			}
+			System.out.print("Codi postal: ");
+			String codiPostal = teclado.next();
+			if(codiPostal.length() <= 0) {
+				codiPostal = rs.getString(7);
+			}
+			System.out.print("Població: ");
+			String poblacio = teclado.next();
+			if(poblacio.length() <= 0) {
+				poblacio = rs.getString(8);
+			}
+			
+			System.out.println("Segur que vols actualitzar el alumne amb id = " + selected + "? (Y/N)");
+			
+			if(teclado.next().equalsIgnoreCase("y")) {
+				selectStmt.execute("UPDATE alumnes "
+						+ "SET nom = "+nom+", dni = "+dni+", dataNaixement = "+dataNaixement+", sexe = "+sexe+", codiPostal = "+codiPostal+", poblacio = "+poblacio+" "
+						+ "WHERE id = "+selected+";");
+				System.out.println("Alumne actualizat correctament");
+			}
+			
+		}
+		
 	}
 
 	private static void selectOne(int selected) throws SQLException {
