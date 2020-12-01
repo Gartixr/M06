@@ -3,24 +3,26 @@ package uf2.exercici01;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 import java.util.Scanner;
 
 public class App {
 
+	static Connection con = null; 
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 		Scanner teclado =  new Scanner(System.in);
-		Connection con = null; 
 		Driver driver = null;
-		String url = "jdbc:mysql://10.32.24.210:3306";
+		String url = "jdbc:mysql://10.32.24.210:3306/alumnes";
 		String usuari = "remote"; 
 		String password = ">9d&pfLYdx.(";
 		boolean menu = true;
 
-		System.out.println("provaDeConnexio()"); 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		}
@@ -34,8 +36,7 @@ public class App {
 		try {
 			//Obtenim una connexi6 des de DriverManager
 			con = DriverManager.getConnection(url, usuari, password); 
-			System.out.println("connexió realitzada usant DriverManeger"); 
-			con.close();
+			System.out.println("connexió realitzada usant DriverManeger");
 		}
 		catch (SQLException ex) {
 			System.out.println("Error " + ex.getMessage());
@@ -45,10 +46,10 @@ public class App {
 		while (menu) {
 			
 			System.out.println("[1] - Select all\n"
-					+ "[2] - Select one"
+					+ "[2] - Select one\n"
 					+ "[3] - Actualizar\n"
 					+ "[4] - Insertar\n"
-					+ "[5] - Eliminar+"
+					+ "[5] - Eliminar\n"
 					+ "[6] - Salir");
 			
 			int input = teclado.nextInt();
@@ -113,6 +114,27 @@ public class App {
 
 	private static void selectAll() {
 		// TODO Auto-generated method stub
-		
+		Statement selectStmt;
+		try {
+			selectStmt = con.createStatement();
+			ResultSet rs = selectStmt.executeQuery("SELECT nom FROM alumnes");
+			
+			while (rs.next()) {
+				System.out.println("------------------------");
+				System.out.println("ID: " + rs.getString(1));
+				System.out.println("\tNom: " + rs.getString(2));
+				System.out.println("\tDNI: " + rs.getString(3));
+				System.out.println("\tData naixement: " + rs.getString(4));
+				System.out.println("\tAdreça postal: " + rs.getString(5));
+				System.out.println("\tSexe: " + rs.getString(6));
+				System.out.println("\tCodi postal: " + rs.getString(7));
+				System.out.println("\tPoblació: " + rs.getString(8));
+				System.out.println("------------------------");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
