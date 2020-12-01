@@ -16,6 +16,7 @@ public class App {
 		String url = "jdbc:mysql://10.32.24.210:3306";
 		String usuari = "remote"; 
 		String password = ">9d&pfLYdx.(";
+		boolean menu = true;
 
 		System.out.println("provaDeConnexio()"); 
 		try {
@@ -36,6 +37,18 @@ public class App {
 		}
 		catch (SQLException ex) {
 			System.out.println("Error " + ex.getMessage());
+		}
+		
+		
+		while (menu) {
+			
+			System.out.println("[1] - Select all\n"
+					+ "[2] - Select one"
+					+ "[3] - Actualizar\n"
+					+ "[4] - Insertar\n"
+					+ "[5] - Eliminar+"
+					+ "[6] - Salir");
+			
 		}
 
 	}
