@@ -14,7 +14,7 @@ public class App {
 		Connection con = null; 
 		Driver driver = null;
 		String url = "jdbc:mysql://10:32.24.210:3306";
-		String usuari = "root"; 
+		String usuari = "remoto"; 
 		String password = ">9d&pfLYdx.(";
 
 		System.out.println("provaDeConnexio()"); 
@@ -31,29 +31,11 @@ public class App {
 		try {
 			//Obtenim una connexi6 des de DriverManager
 			con = DriverManager.getConnection(url, usuari, password); 
-			System.out.println("connexi6 realitzada usant DriverManeger"); 
+			System.out.println("connexió realitzada usant DriverManeger"); 
 			con.close();
 		}
 		catch (SQLException ex) {
 			System.out.println("Error " + ex.getMessage());
-		}
-
-
-		try {
-			//Obtenim el Driver del controlador des de DriverMana. 
-			driver = DriverManager.getDriver(url);
-
-			//configurem l'usuari :a contrasenya
-			Properties properties = new Properties(); 
-			properties.setProperty("usuari", usuari); 
-			properties.setProperty("password", password);
-
-			con = driver.connect(url, properties); 
-			System.out.println("Connexió realitzada usant Driver"); 
-			con.close();
-		}
-		catch (SQLException ex) {
-			System.out.println("Err" + ex.getMessage());
 		}
 
 	}
